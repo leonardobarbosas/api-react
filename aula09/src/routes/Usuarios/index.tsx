@@ -13,20 +13,22 @@ export default function Usuarios() {
   ]);
 
   useEffect(() => {
-    fetch("https://api.github.com/users")
-      .then((response) => {
-        if (!response.ok) {
+    async function reqUsers() {
+      try {
+        const resp = await fetch("https://api.github.com/users");
+
+        const dados = await resp.json();
+        if (!resp.ok) {
           console.log("Erro ao buscar usuários");
         }
-        return response.json();
-      })
-      .then((data) => {
-        setUsuarios(data);
-      })
-      .catch((error) => {
-        console.log(error.message);
+        setUsuarios(dados);
+      } catch (err) {
+        console.log(err);
         navigate("/error");
-      });
+      }
+    }
+
+    reqUsers();
   }, []);
 
   return (

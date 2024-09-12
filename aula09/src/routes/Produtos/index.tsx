@@ -25,6 +25,7 @@ export default function Produtos() {
           <div key={produto.id}>
             <h3>{produto.nome}</h3>
             <p>R$ {produto.preco}</p>
+            <button>Editar</button>
           </div>
         ))}
       </div>
